@@ -1,0 +1,13 @@
+<odoo>
+   <data>
+      <record id="auto_vca_certificate_serial_number" model="ir.sequence">
+         <field name="name">VCA Certificate serial number</field>
+         <field name="code">vca.certificate.code</field>
+         <field name="active">TRUE</field>
+         <field name="prefix">TD</field>
+         <field name="padding">5</field>
+         <field name="number_next">1</field>
+         <field name="number_increment">1</field>
+      </record>
+   </data>
+</odoo>

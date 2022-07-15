@@ -1,0 +1,21 @@
+<odoo>
+    <record id="vca_certificate_card" model="ir.actions.report">
+        <field name="name">VCA certificate</field>
+        <field name="model">vca.certificate</field>
+        <field name="report_name">vca.vca_certificate_card_report</field>
+<!--        <field name="binding_model_id" ref="model_vca_certificate"/>-->
+        <field name="binding_model_id"/>
+    </record>
+
+    <!-- QWeb Reports -->
+    <!-- NAME & FILE_NAME should be the same -->
+<!--            <report-->
+<!--                id="vca_certificate_card"-->
+<!--                model="vca.certificate"-->
+<!--                report_type="qweb-pdf"-->
+<!--                string="VCA certificate"-->
+<!--                name="VCA certificate"-->
+<!--                menu="True"-->
+<!--            />-->
+</odoo>
+<!--                menu="[('printable', '=', True)]"-->

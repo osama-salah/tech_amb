@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <record id="vca_certificate_tree_view" model="ir.ui.view">
+            <field name="name">VCA tree view</field>
+            <field name="model">vca.certificate</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="serial_number"/>
+                    <field name="vehicle_type"/>
+                    <field name="certificate_type_id"/>
+                    <field name="traffic_department_id"/>
+                    <!-- View name/company -->
+                    <field name="partner_id" string="Customer"/>
+                    <!-- View name only -->
+<!--                    <field name="partner_name" string="Customer"/>-->
+                    <field name="car_model"/>
+                    <field name="brand_id" string="Brand"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vca_certificate_form_view" model="ir.ui.view">
+            <field name="name">VCA form view</field>
+            <field name="model">vca.certificate</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="print_report_user" type="object" string="Print Certificate" attrs="{'invisible':[('printable','=',False)]}"/>
+                        <button name="print_report" type="object" string="Print Certificate" attrs="{'invisible':[('printable','=',True)]}"
+                                groups="vca.vca_supervisor_group"/>
+                        <button name="enable_print" type="object" string="Allow Reprint" attrs="{'invisible':[('printable','=',True)]}"
+                                groups="vca.vca_supervisor_group"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="printable" invisible="True"/>
+                                <field name="vehicle_type"/>
+                                <field name="certificate_type_id"/>
+                                <field name="traffic_department_id"/>
+                                <field name="partner_id" string="Customer"/>
+                                <field name="price"/>
+                            </group>
+                            <group>
+                                <field name="motor_number"/>
+                                <field name="chassis_number"/>
+                                <field name="car_model"/>
+                                <field name="brand_id" string="Brand"/>
+                            </group>
+                        </group>
+                        <field name="log_history_ids" readonly="True">
+                            <tree>
+                                <field name="create_uid" string="Printed by"/>
+                                <field name="create_date" string="Printed on"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="vca_certificate_action" model="ir.actions.act_window">
+            <field name="name">Certificate</field>
+            <field name="res_model">vca.certificate</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="vca_root_menu" name="Certificates App"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="vca_certificate_menu" name="Certificates" parent="vca_root_menu" action="vca_certificate_action"
+                  sequence="1"/>
+    </data>
+</odoo>

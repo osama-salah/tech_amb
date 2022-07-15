@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="vca_traffic_department_tree_view" model="ir.ui.view">
+            <field name="name">VCA traffic department tree view</field>
+            <field name="model">vca.traffic_department</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vca_traffic_department_action" model="ir.actions.act_window">
+            <field name="name">Traffic Department</field>
+            <field name="res_model">vca.traffic_department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="vca_traffic_department_menu" name="Traffic Departments" parent="vca_root_menu" action="vca_traffic_department_action" sequence="3"/>
+    </data>
+</odoo>

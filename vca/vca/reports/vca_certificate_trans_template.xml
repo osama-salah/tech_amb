@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="certificate_trans_report">
+        <!-- Re-browse of the record with the partner lang -->
+<!--        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>-->
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+            <div class="page" style="font-size: large; padding: 50; line-height: 3;">
+                <p style="page-break-after:always;">
+                    <div style="font-family: Arial Black; border:20px groove ;text-align: center; padding: 40px;">
+                        <h1 style="text-align: center;">
+                            <strong><span style="color: #ff0000;">شهادة صلاحية</span></strong>
+                        </h1>
+                        <br/>
+                        <p style="text-align: right; font-family: Arial Black;">
+                            <strong>
+                                <t t-foreach="doc.traffic_department_id" t-as="department">
+                                    <span t-out="department.name"/>
+                                </t>
+                            /السيد اللواء مدير إدارة مرور
+                            </strong>
+                        </p>
+                        <p style="text-align: left; font-family: Arial Black; color: blue;">تحريرا في
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                        </p>
+                        <p style="text-align: center;">
+                            <strong>،،،،تحية طيبة و بعد</strong>
+                        </p>
+                        <p style="text-align: right;">
+                            <t t-foreach="doc.certificate_type_id" t-as="cert_type">
+                                <span t-out="cert_type.name"/>
+                                / أتشرف بإفادة سيادتكم بأنه تم تعديل
+                            </t>
+                        </p>
+                        <table style="height: 54px; width: 100%; border-collapse: collapse; border-style: hidden; float: right;"
+                               border="0">
+                            <tbody>
+                                <tr style="height: 18px;">
+                                    <td style="width: 20%; height: 18px; text-align: right;">
+                                        <span t-out="doc.motor_number"/>
+                                    </td>
+                                    <td style="width: 20%; height: 18px; text-align: right;">/ محرك رقم</td>
+                                    <td style="width: 35%; height: 18px; text-align: right;">
+                                        <span t-out="doc.chassis_number"/>
+                                    </td>
+                                    <td style="width: 25%; height: 18px; text-align: right;">/ شاسيه رقم</td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 20%; height: 18px; text-align: right;">
+                                        <span t-out="doc.car_model"/>
+                                    </td>
+                                    <td style="width: 20%; height: 18px; text-align: right;">/ موديل</td>
+                                    <td style="width: 35%; height: 18px; text-align: right;">
+                                        <t t-foreach="doc.brand_id" t-as="brand">
+                                            <span t-out="brand.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width: 25%; height: 18px; text-align: right;">/ الماركة</td>
+                                </tr>
+                                <tr style="height: 18px;">
+                                    <td style="width: 20%; height: 18px; text-align: right;"></td>
+                                    <td style="width: 20%; height: 18px; text-align: right;"></td>
+                                    <td style="width: 35%; height: 18px; text-align: right;">
+                                        <t t-foreach="doc.partner_id" t-as="partner">
+                                            <span t-out="partner.name"/>
+                                        </t>
+                                    </td>
+                                    <td style="width: 25%; height: 18px; text-align: right;">/ اسم المالك</td>
+                                </tr>
+<!--                                <tr style="height: 18px;">-->
+<!--                                    <td colspan="4" style="width: 100%; height: 18px; text-align: right;"><pre>-->
+
+<!--                                    </pre></td>-->
+<!--                                </tr>-->
+                            </tbody>
+                        </table>
+                        <div style="font-family: Arial; font-size: large; padding: 100; line-height: 2;text-align: right;">
+                        <div>
+                        حيـث أن المؤسسـة معتمدة بالهيئة العامة للتنمية الصـناعية و مصلحـة الرقـابة الصـناعية و معتمدة بـإدارات المـرور و لها سجل تـجاري صـناعي
+                        </div><div>
+                        و بطاقة ضريبية بهذه الصفة و قد تم فحص التعديل و التركيب و اللحامات و الإصلاحات اللازمة طبقا لأصول الصناعة و دون الإخلال بالتصميم
+                        </div>
+                        <div>
+                        الأصلي و دون المساس بالأجزاء الجوهرية للسيارة و قد تم تجربة السيارة على الطرق المصرية و وجد أنها متزنة و هذه شـهادة منا بذلك لتقديمها
+                        </div><div>
+                        للمرور و المالك مسؤول مسئولية كاملة عن بيانات الشهادة فبرجاء التكرم و التفضل بالموافقة على ترخيص السيارة
+                        </div></div>
+                        <![CDATA[&nbsp;]]>
+                        <!--                        <p style="text-align: right; padding: 30px; width: 80%;"></p>-->
+                        <p></p>
+                        <span>
+                            <p style="text-align: center;">
+                                <strong>،،،، و تفضلوا بقبول فائق الاحترام التقدير</strong>
+                            </p>
+                        </span>
+                    </div>
+                </p>
+            </div>
+        </t>
+
+    </template>
+</odoo>

@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="vca_customer_tree_view" model="ir.ui.view">
+            <field name="name">VCA customer tree view</field>
+            <field name="model">res.partner</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="email" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="user_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="activity_ids" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="city" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="country_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="vca_customer_action" model="ir.actions.act_window">
+            <field name="name">Customer</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="vca_customer_menu" name="Customers" parent="vca_root_menu" action="vca_customer_action" sequence="4"/>
+    </data>
+</odoo>

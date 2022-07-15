@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record id="vca_groups_category" model="ir.module.category">
+            <field name="name">VCA</field>
+        </record>
+
+        <record id="vca_user_group" model="res.groups">
+            <field name="name">Users</field>
+            <field name="category_id" ref="vca_groups_category"/>
+        </record>
+
+        <record id="vca_supervisor_group" model="res.groups">
+            <field name="name">Supervisors</field>
+            <field name="category_id" ref="vca_groups_category"/>
+            <field name="implied_ids" eval="[(4, ref('vca_user_group'))]"/>
+        </record>
+
+        <record id="vca_test_group" model="res.groups">
+            <field name="name">Test</field>
+            <field name="category_id" ref="vca_groups_category"/>
+        </record>
+
+        <record id="vca_user_cr_own_certificates" model="ir.rule">
+            <field name="name">CR own records</field>
+            <field name="model_id" ref="model_vca_certificate"/>
+            <field name="groups" eval="[(4, ref('vca_user_group'))]"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+        </record>
+
+        <record id="vca_all_cru_certificates" model="ir.rule">
+            <field name="name">CRU all records</field>
+            <field name="model_id" ref="model_vca_certificate"/>
+            <field name="groups" eval="[(4, ref('vca_supervisor_group'))]"/>
+            <field name="domain_force">[]</field>
+        </record>
+    </data>
+</odoo>
