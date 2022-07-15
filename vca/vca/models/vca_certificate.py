@@ -55,6 +55,7 @@ class VcaCertificate(models.Model):
         print("Disabling print...")
         self.printable_var = False
         self.env.ref('vca.vca_certificate_card').write({'binding_model_id': None})
+        
 
 
 class CertificateType(models.Model):
