@@ -1,6 +1,5 @@
 from datetime import datetime
-
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class VcaCertificate(models.Model):
@@ -29,19 +28,11 @@ class VcaCertificate(models.Model):
     log_history_ids = fields.One2many("vca.log_history", "certificate_id")
     printable = fields.Boolean(default=True)
 
-    # @api.onchange('vehicle_type')
-    # def show_menu(self):
-    #     self.env.ref('vca.vca_certificate_card').write({'binding_model_id': None})
-
     def print_report_user(self):
         self.sudo().printable = False
         return self.print_report()
 
-    def print_report(self, supervisor=False):
-        # self.env.ref('vca.vca_certificate_card').write({'binding_model_id': None})
-        # print(self.env['ir.actions.report'].search([("id", "=", 211)]))
-        # self.env['ir.actions.report'].search([("id", "=", 211)]).write({'binding_model_id': None})
-
+    def print_report(self):
         if self.id:
             self.env["vca.log_history"].create({
                 'certificate_id': self.id})
@@ -49,12 +40,6 @@ class VcaCertificate(models.Model):
 
     def enable_print(self):
         self.printable = True
-
-    @api.model
-    def disable_print(self):
-        print("Disabling print...")
-        self.printable_var = False
-        self.env.ref('vca.vca_certificate_card').write({'binding_model_id': None})
 
 
 class CertificateType(models.Model):
